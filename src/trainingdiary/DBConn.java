@@ -9,13 +9,14 @@ public abstract class DBConn {
 	
 	public void connect() {
 		try {
-			Class.forName("com.mysql.jdbc.Driver").newInstance();
-			Properties p = new Properties();
+			Class.forName("org.mariadb.jdbc.Driver").newInstance();
+			// Class.forName("com.mariadb.jdbc.Driver").newInstance();
+			//Properties p = new Properties();
 			
-			p.put("user", "myuser");
-			p.put("password", "mypassword");
+			//p.put("user", "askbk_tdt4145");
+			//p.put("password", "kuledatabaser");
 			
-			conn = DriverManager.getConnection("jdb:mysql://127.0.0.1/");
+			conn = DriverManager.getConnection("jdbc:mysql://mysql.stud.ntnu.no/askbk_tdt4145", "askbk_tdt4145", "kuledatabaser");
 		} catch (Exception e) {
 			throw new RuntimeException("Unable to connect", e);
 		}
