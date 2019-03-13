@@ -32,7 +32,7 @@ public class LagOktCtrl extends DBConn {
 	}
 	
 	public void fullforOkt() {
-		this.apparat.save(conn);
+		this.okt.save(conn);
 		try {
 			conn.commit();
 		} catch (SQLException e) {
