@@ -39,13 +39,17 @@ public class Apparat extends ActiveDomainObject {
 
 	@Override
 	public void refresh(Connection conn) {
-		// TODO Auto-generated method stub
-		
+		this.initialize(conn);
 	}
 
 	@Override
 	public void save(Connection conn) {
-		// TODO Auto-generated method stub
-		
+        try {    
+            Statement stmt = conn.createStatement(); 
+            stmt.executeUpdate("insert into Apparat (navn, beskrivelse) values (" + this.navn + ", " + this.beskrivelse + ")");
+        } catch (Exception e) {
+            System.out.println("db error during insert of Apparat="+e);
+            return;
+        }
 	}
 }
