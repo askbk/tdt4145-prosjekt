@@ -15,7 +15,7 @@ public abstract class DBConn {
 			p.put("user", "myuser");
 			p.put("password", "mypassword");
 			
-			conn = DriverManager.getConnection("jdb:mysql://127.0.0.1/")
+			conn = DriverManager.getConnection("jdb:mysql://127.0.0.1/");
 		} catch (Exception e) {
 			throw new RuntimeException("Unable to connect", e);
 		}
