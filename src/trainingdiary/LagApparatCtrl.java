@@ -25,7 +25,7 @@ public class LagApparatCtrl extends DBConn {
 		this.muligBeskrivelse = beskrivelse;
 	}
 	
-	public void fullførApparat() {
+	public void fullforApparat() {
 		this.apparat.save(conn);
 		try {
 			conn.commit();
