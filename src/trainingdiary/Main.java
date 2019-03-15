@@ -68,31 +68,37 @@ public class Main {
     }
     
     private static void apparatRegistrering() {
-    	String input = "", navn, beskrivelse;
+    	String input = "n", navn, beskrivelse;
     	
-    	
-    	System.out.println("APPARATREGISTRERING\n"
-        		+ "Skriv inn navn på øvelsen (blankt for å gå tilbake):\n");
-        
-        navn = scanner.nextLine();
-        
-        if (navn == "") {
-        	return;
-        }
-        
-        System.out.println("Skriv inn beskrivelsen til apparatet (blankt for å gå tilbake):\n");
-        
-        beskrivelse = scanner.nextLine();
-        
-        if (beskrivelse == "") {
-        	return;
-        }
-        
-        System.out.println("Er dette riktig?\n"
-        		+ "Navn:\t" + navn + "\n"
-        		+ "Beskrivelse:\t" + beskrivelse + "\n");
-        
-        lagApparatCtrl.lagApparat(navn, beskrivelse);
-        lagApparatCtrl.fullforApparat();
+    	while (input == "n") {
+    		System.out.println("APPARATREGISTRERING\n"
+            		+ "Skriv inn navn på øvelsen (blankt for å gå tilbake):\n");
+            
+            navn = scanner.nextLine();
+            
+            if (navn == "") {
+            	return;
+            }
+            
+            System.out.println("Skriv inn beskrivelsen til apparatet (blankt for å gå tilbake):\n");
+            
+            beskrivelse = scanner.nextLine();
+            
+            if (beskrivelse == "") {
+            	return;
+            }
+            
+            System.out.println("Er dette riktig?\n"
+            		+ "Navn:\t" + navn + "\n"
+            		+ "Beskrivelse:\t" + beskrivelse + "\n");
+            
+            input = scanner.nextLine();
+            
+            if (input == "y") {
+            	lagApparatCtrl.lagApparat(navn, beskrivelse);
+                lagApparatCtrl.fullforApparat();
+            	break;
+            }
+    	}
     }
 }
