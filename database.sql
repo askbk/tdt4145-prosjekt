@@ -1,39 +1,40 @@
+DROP DATABASE if exists askbk_tdt4145;
 CREATE DATABASE if not exists askbk_tdt4145;
 
 USE askbk_tdt4145;
 
 DROP TABLE if exists Notat;
-DROP TABLE if exists FriØvelse;
-DROP TABLE if exists ApparatØvelse;
+DROP TABLE if exists FriOvelse;
+DROP TABLE if exists ApparatOvelse;
 DROP TABLE if exists Apparat;
-DROP TABLE if exists ØvelseIØkt;
-DROP TABLE if exists ØvelseIGruppe;
+DROP TABLE if exists OvelseIOkt;
+DROP TABLE if exists OvelseIGruppe;
 DROP TABLE if exists Gruppe;
-DROP TABLE if exists Øvelse;
-DROP TABLE if exists Økt;
+DROP TABLE if exists Ovelse;
+DROP TABLE if exists Okt;
 
 
-CREATE TABLE Økt(
-ØktId int NOT NULL AUTO_INCREMENT,
-ØktDato date NOT NULL,
-ØktTidspunkt Timestamp NOT NULL,
-ØktVarighet int NOT NULL,
+CREATE TABLE Okt(
+OktId int NOT NULL AUTO_INCREMENT,
+OktDato date NOT NULL,
+OktTidspunkt Timestamp NOT NULL,
+OktVarighet int NOT NULL,
 PersonligForm int NOT NULL,
 PersonligPrestasjon int NOT NULL,
-PRIMARY KEY (ØktId));
+PRIMARY KEY (OktId));
 
-CREATE TABLE Øvelse(
-ØvelseId int NOT NULL AUTO_INCREMENT,
-ØvelseNavn varchar(30) NOT NULL,
-Øvelsetype int NOT NULL,
-PRIMARY KEY (ØvelseId));
+CREATE TABLE Ovelse(
+OvelseId int NOT NULL AUTO_INCREMENT,
+OvelseNavn varchar(30) NOT NULL,
+Ovelsetype int NOT NULL,
+PRIMARY KEY (OvelseId));
 
 CREATE TABLE Notat(
-ØktId int NOT NULL,
-Treningsformål varchar(60) NOT NULL,
+OktId int NOT NULL,
+Treningsformal varchar(60) NOT NULL,
 TreningsOpplevelse varchar(60) NOT NULL,
-PRIMARY KEY (ØktId),
-FOREIGN KEY (ØktId) REFERENCES Økt(ØktId)
+PRIMARY KEY (OktId),
+FOREIGN KEY (OktId) REFERENCES Okt(OktId)
 ON UPDATE CASCADE ON DELETE CASCADE);
 
 CREATE TABLE Gruppe(
@@ -41,10 +42,10 @@ GruppeId int NOT NULL AUTO_INCREMENT,
 GruppeNavn varchar(30) NOT NULL,
 PRIMARY KEY (GruppeId));
 
-CREATE TABLE FriØvelse(
-    ØvelseId int NOT NULL,
-FriØvelseBeskrivelse varchar(60) NOT NULL,
-FOREIGN KEY (ØvelseId) REFERENCES Øvelse(ØvelseId)
+CREATE TABLE FriOvelse(
+    OvelseId int NOT NULL,
+FriOvelseBeskrivelse varchar(60) NOT NULL,
+FOREIGN KEY (OvelseId) REFERENCES Ovelse(OvelseId)
 ON DELETE NO ACTION ON UPDATE CASCADE);
 
 CREATE TABLE Apparat(
@@ -53,30 +54,30 @@ ApparatNavn varchar(30) NOT NULL,
 ApparatBeskrivelse varchar(30) NOT NULL,
 PRIMARY KEY (ApparatId));
 
-CREATE TABLE ApparatØvelse(
+CREATE TABLE ApparatOvelse(
 ApparatID int NOT NULL,
-ØvelseID int NOT NULL,
-PRIMARY KEY (ØvelseID),
+OvelseID int NOT NULL,
+PRIMARY KEY (OvelseID),
 FOREIGN KEY (ApparatId) REFERENCES Apparat(ApparatId)
 ON DELETE NO ACTION ON UPDATE CASCADE,
-FOREIGN KEY (ØvelseId) REFERENCES Øvelse(ØvelseId)
+FOREIGN KEY (OvelseId) REFERENCES Ovelse(OvelseId)
 ON DELETE NO ACTION ON UPDATE CASCADE);
 
 
 
-CREATE TABLE ØvelseIØkt(
-    ØktId int NOT NULL,
-    ØvelseId int NOT NULL,
+CREATE TABLE OvelseIOkt(
+    OktId int NOT NULL,
+    OvelseId int NOT NULL,
 Kilo float,
 sett int NOT NULL,
-FOREIGN KEY (ØktId) REFERENCES Økt(ØktId)
+FOREIGN KEY (OktId) REFERENCES Okt(OktId)
 ON DELETE NO ACTION ON UPDATE CASCADE,
-FOREIGN KEY (ØvelseId) REFERENCES Øvelse(ØvelseId)
+FOREIGN KEY (OvelseId) REFERENCES Ovelse(OvelseId)
 ON DELETE NO ACTION ON UPDATE CASCADE);
 
-CREATE TABLE ØvelseIGruppe(
+CREATE TABLE OvelseIGruppe(
     GruppeId int NOT NULL,
-    ØvelseId int NOT NULL,
+    OvelseId int NOT NULL,
 FOREIGN KEY (GruppeId) REFERENCES Gruppe(GruppeId),
-FOREIGN KEY (ØvelseId) REFERENCES Øvelse(ØvelseId)
+FOREIGN KEY (OvelseId) REFERENCES Ovelse(OvelseId)
 ON DELETE NO ACTION ON UPDATE CASCADE);
