@@ -48,6 +48,7 @@ public class SelectionQueries extends DBConn{
 		connect();
 		int key;
 		QueryResult result = new QueryResult();
+		String 
 		
 		try {
 			System.out.println("dheya");
@@ -55,7 +56,13 @@ public class SelectionQueries extends DBConn{
 			ResultSet rs = stmt.executeQuery("select*"
 											+ "from Okt as o"
 											+ "left join Notat as n on o.OktId = n.OktId"
-											+ "order by o.OktId desc limit " + 'n')
+											+ "order by o.OktId desc limit n");
+		while (rs.next()) {
+			row = new ArrayList<>();
+			
+			key = rs.getInt("oktId");
+			navn = rs.get
+		}
 											
 		}
 	}
