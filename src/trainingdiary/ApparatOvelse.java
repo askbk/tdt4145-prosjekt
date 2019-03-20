@@ -55,7 +55,7 @@ private int apparatId;
 										+ "VALUES ('" + this.navn + "', 1)", Statement.RETURN_GENERATED_KEYS);
 			
 	        stmt.executeUpdate("INSERT ApparatOvelse (ApparatID, OvelseID) "
-	        				 + "VALUES ('" + ovelseId + "', " + this.apparatId + ")");
+	        				 + "VALUES (" + ovelseId + ", " + this.apparatId + ")");
 	    } catch (Exception e) {
 	        System.out.println("db error during insert of ApparatOvelse="+e);
 	        System.out.println(this.navn + " " + apparatId + " " + ovelseId);
