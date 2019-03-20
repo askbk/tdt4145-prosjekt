@@ -34,6 +34,8 @@ public class LagApparatOvelseCtrl extends DBConn {
 			return;
 		}
 	}
+	
+	@Override
 	public String toString(){
 		return muligNavn + "\n" + muligApparatId; 
 	}
