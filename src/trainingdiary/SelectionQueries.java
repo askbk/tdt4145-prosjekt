@@ -48,7 +48,9 @@ public class SelectionQueries extends DBConn{
 		connect();
 		int key;
 		QueryResult result = new QueryResult();
-		String 
+		String treningsFormaal;
+		String treningsOpplevelse;
+		List<String> row;
 		
 		try {
 			System.out.println("dheya");
@@ -61,10 +63,19 @@ public class SelectionQueries extends DBConn{
 			row = new ArrayList<>();
 			
 			key = rs.getInt("oktId");
-			navn = rs.get
+			treningsFormaal = rs.getString("treningsFormaal");
+			treningsOpplevelse = rs.getString("treningsOpplevelse");
+			row.add(Integer.toString(key));
+			row.add(treningsFormaal);
+			row.add(treningsOpplevelse);
+			
+			result.insertRow(key, row);
 		}
-											
+		} catch (Exception e) {
+			System.out.println("db error during select of okt= "+e);
 		}
+		
+		return result;
 	}
 	
 	public static void main(String[] args) {
