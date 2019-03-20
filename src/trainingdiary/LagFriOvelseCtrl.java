@@ -19,13 +19,13 @@ public class LagFriOvelseCtrl extends DBConn {
         }
 	}
 	
-	public void lagApparatOvelse(String navn, String beskrivelse) {
+	public void lagFriOvelse(String navn, String beskrivelse) {
 		this.friovelse = new FriOvelse(navn, beskrivelse);
 		this.muligNavn = navn;
 		this.muligBeskrivelse = beskrivelse;
 	}
 	
-	public void fullforApparatOvelse() {
+	public void fullforFriOvelse() {
 		this.friovelse.save(conn);
 		try {
 			conn.commit();
