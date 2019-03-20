@@ -31,7 +31,7 @@ public class Okt extends ActiveDomainObject {
             }
 
         } catch (Exception e) {
-            System.out.println("db error during select of økt= "+e);
+            System.out.println("db error during select of okt= "+e);
             return;
         }
 	}
@@ -45,7 +45,7 @@ public class Okt extends ActiveDomainObject {
 	public void save(Connection conn) {
         try {    
             Statement stmt = conn.createStatement(); 
-            stmt.executeUpdate("insert into Økt (Dato, Tidspunkt, Varighet, Personlig_form, Personlig_prestasjon) "
+            stmt.executeUpdate("insert into okt (Dato, Tidspunkt, Varighet, Personlig_form, Personlig_prestasjon) "
             				+ "values ('" + this.dato + "', '" + this.tidspunkt + "', '" + this.varighet + "', '" + this.form + "', " + this.prestasjon +"')");
         } catch (Exception e) {
             System.out.println("db error during insert of Apparat="+e);
