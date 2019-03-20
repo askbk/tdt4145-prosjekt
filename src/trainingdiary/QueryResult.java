@@ -28,6 +28,4 @@ public class QueryResult implements Iterable<List<String>>{
 		Iterator<List<String>> ires = rows.values().iterator();
         return ires; 
 	}
-	
-	
 }
