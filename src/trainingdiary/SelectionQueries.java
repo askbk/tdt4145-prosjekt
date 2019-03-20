@@ -44,6 +44,22 @@ public class SelectionQueries extends DBConn{
 		return result;
 	}
 	
+	public QueryResult getOktNotat(int n) {
+		connect();
+		int key;
+		QueryResult result = new QueryResult();
+		
+		try {
+			System.out.println("dheya");
+			Statement stmt = conn.createStatement();
+			ResultSet rs = stmt.executeQuery("select*"
+											+ "from Okt as o"
+											+ "left join Notat as n on o.OktId = n.OktId"
+											+ "order by o.OktId desc limit " + 'n')
+											
+		}
+	}
+	
 	public static void main(String[] args) {
 		SelectionQueries test = new SelectionQueries();
 		QueryResult apparater = test.getApparater();
