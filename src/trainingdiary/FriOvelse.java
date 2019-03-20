@@ -49,7 +49,8 @@ public class FriOvelse extends Ovelse {
 	public void save(Connection conn) {
 		  try {    
 	            Statement stmt = conn.createStatement(); 
-	            stmt.executeUpdate("insert into FriOvelse (Navn, Beskrivelse) values ('" + this.navn + "', '" + this.beskrivelse + "')");
+	            int ovelseId = stmt.executeUpdate("insert into Øvelse (Navn) values ('" + this.navn + "')", Statement.RETURN_GENERATED_KEYS);
+	            stmt.executeUpdate("insert into FriOvelse (ØvelseId, FriØvelseBeskrivelse) values ('" + ovelseId + "', '" + this.beskrivelse + "')");
 	        } catch (Exception e) {
 	            System.out.println("db error during insert of FriOvelse="+e);
 	            return;
