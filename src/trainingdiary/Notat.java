@@ -5,13 +5,13 @@ import java.util.*;
 
 
 public class Notat extends ActiveDomainObject{
-	private int notatID
+	private int notatID;
 	private String treningsFormaal;
 	private String treningsOpplevelse;
-	
+
 	public Notat(String treningsFormaal, String treningsOpplevelse) {
 		this.treningsFormaal = treningsFormaal;
-		this.treningsOpplevelse = treningsOpplevelse;				
+		this.treningsOpplevelse = treningsOpplevelse;
 	}
 
 	public String getTreningsFormaal() {
@@ -36,27 +36,27 @@ public class Notat extends ActiveDomainObject{
             System.out.println("db error during select of avtale= "+e);
             return;
         }
-		
+
 	}
 
 	@Override
 	public void refresh(Connection conn) {
-		initialize (conn);	
+		initialize (conn);
 	}
 
 	@Override
 	public void save(Connection conn) {
-		try {    
-            Statement stmt = conn.createStatement(); 
+		try {
+            Statement stmt = conn.createStatement();
             stmt.executeUpdate("insert into Notat(treningsFormaal,treningsOpplevelse) values (" + this.treningsFormaal + "," + this.treningsOpplevelse + ")");
         } catch (Exception e) {
             System.out.println("db error during insert of Notat="+e);
             return;
         }
-		
+
 	}
 
-	
-	
-	
+
+
+
 }
