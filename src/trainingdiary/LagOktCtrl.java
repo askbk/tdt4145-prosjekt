@@ -40,4 +40,11 @@ public class LagOktCtrl extends DBConn {
 			return;
 		}
 	}
-}
+	public String toString(){
+		return muligTidspunkt + 
+				"\n" + muligVarighet + 
+				"\n" + muligForm + 
+				"\n" + muligPrestasjon; 
+		}
+	}
+

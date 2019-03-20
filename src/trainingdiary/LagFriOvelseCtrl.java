@@ -34,4 +34,8 @@ public class LagFriOvelseCtrl extends DBConn {
 			return;
 		}
 	}
+	public String toString(){
+		return muligNavn + 
+				"\n" + muligBeskrivelse; 
+	}
 }
