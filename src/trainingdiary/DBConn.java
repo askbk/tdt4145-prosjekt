@@ -18,7 +18,7 @@ public abstract class DBConn {
 			
 			conn = DriverManager.getConnection("jdbc:mysql://mysql.stud.ntnu.no/askbk_tdt4145", "askbk_tdt4145", "kuledatabaser");
 		} catch (Exception e) {
-			throw new RuntimeException("Unable to connect", e);
+			throw new RuntimeException("Unable to connect yo", e);
 		}
 	}
 }

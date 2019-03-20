@@ -15,8 +15,8 @@ public class Main {
     	int action = -1;
     	
     	while (action != 2) {
-    		System.out.println("Hva vil du gjøre?\n"
-            		+ "0)\tRegistrere apparat, øvelse eller treningsøkt\n"
+    		System.out.println("Hva vil du gjore?\n"
+            		+ "0)\tRegistrere apparat, ovelse eller treningsokt\n"
             		+ "1)\tNoe annet\n"
             		+ "2)\tAvslutt\n");
             
@@ -44,8 +44,8 @@ public class Main {
     	while (action != 3) {
     		System.out.println("Hva vil du registrere?\n"
             		+ "0)\tApparat\n"
-            		+ "1)\tØvelse\n"
-            		+ "2)\tTreningsøkt\n"
+            		+ "1)\tOvelse\n"
+            		+ "2)\tTreningsokt\n"
             		+ "3)\tIngenting - ta meg tilbake!\n");
             
             action = Integer.parseInt(scanner.nextLine());
@@ -72,7 +72,7 @@ public class Main {
     	
     	while (input == "n") {
     		System.out.println("APPARATREGISTRERING\n"
-            		+ "Skriv inn navn på øvelsen (blankt for å gå tilbake):\n");
+            		+ "Skriv inn navn på ovelsen (blankt for å gå tilbake):\n");
             
             navn = scanner.nextLine();
             
