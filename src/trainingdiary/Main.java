@@ -72,7 +72,7 @@ public class Main {
     	
     	while (input == "n") {
     		System.out.println("APPARATREGISTRERING\n"
-            		+ "Skriv inn navn på øvelsen (blankt for å gå tilbake):\n");
+            		+ "Skriv inn navn på apparatet (blankt for å gå tilbake):\n");
             
             navn = scanner.nextLine();
             
@@ -86,6 +86,50 @@ public class Main {
             
             if (beskrivelse == "") {
             	return;
+            }
+            
+            System.out.println("Er dette riktig?\n"
+            		+ "Navn:\t" + navn + "\n"
+            		+ "Beskrivelse:\t" + beskrivelse + "\n");
+            
+            input = scanner.nextLine();
+            
+            if (input == "y") {
+            	lagApparatCtrl.lagApparat(navn, beskrivelse);
+                lagApparatCtrl.fullforApparat();
+            	break;
+            }
+    	}
+    }
+    
+    private static void ovelseRegistrering() {
+    	String input = "n", navn, beskrivelse;
+    	int type = 0;
+    	
+    	while (input == "n") {
+    		System.out.println("OVELSEREGISTRERING\n"
+            		+ "Skriv inn navn på ovelsen (blankt for å gå tilbake):\n");
+            
+            navn = scanner.nextLine();
+            
+            if (navn == "") {
+            	return;
+            }
+            
+            System.out.println("Er øvelsen en apparatovelse? (y/n):\n");
+            
+            input = scanner.nextLine();
+            
+            if (input == "y") {
+            	type = 1;
+            	
+            	System.out.println("Hvilket apparat bruker ovelsen?:\n");
+                
+                input = scanner.nextLine();
+            } else {
+            	System.out.println("Skriv inn beskrivelse for friovelse\n");
+                
+                beskrivelse = scanner.nextLine();
             }
             
             System.out.println("Er dette riktig?\n"
