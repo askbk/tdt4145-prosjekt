@@ -108,6 +108,7 @@ public class Main {
     }
     
     private static void ovelseRegistrering() {
+    	QueryResult apparater = new QueryResult();
     	String input = "n", navn, beskrivelse ="Ingen beskrivelse.";
     	int type = 0, apparatId = -1;
     	
@@ -127,14 +128,16 @@ public class Main {
             
             if (input.equals("y")) {
             	type = 1;
-            	QueryResult apparater = queries.getApparater();
+            	apparater = queries.getApparater();
             	System.out.println("Hvilket apparat bruker ovelsen?:\n");
             	
             	for(List<String> apparatRow : apparater) {
             		System.out.println(apparatRow.get(0) + ")\t" + apparatRow.get(1));
             	}
                 
-                input = scanner.nextLine();
+                apparatId = Integer.parseInt(scanner.nextLine());
+                
+                lagApparatOvelseCtrl.lagApparatOvelse(navn, apparatId);
             } else {
             	System.out.println("Skriv inn beskrivelse for friovelse\n");
                 
@@ -151,7 +154,7 @@ public class Main {
             if (type == 0) {
             	System.out.println(lagFriOvelseCtrl.toString());
             } else {
-            	System.out.println(lagApparatOvelseCtrl.toString());
+            	System.out.println(lagApparatOvelseCtrl.toString() + "\n" + apparater.getResult(apparatId).get(1));
             }
             
             input = scanner.nextLine();
