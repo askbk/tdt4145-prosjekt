@@ -75,13 +75,13 @@ public class Main {
     private static void apparatRegistrering() {
     	String input = "n", navn, beskrivelse;
     	
-    	while (input == "n") {
+    	while (input.equals("n")) {
     		System.out.println("APPARATREGISTRERING\n"
             		+ "Skriv inn navn på apparatet (blankt for å gå tilbake):\n");
             
             navn = scanner.nextLine();
             
-            if (navn == "") {
+            if (navn.equals("")) {
             	return;
             }
             
@@ -89,7 +89,7 @@ public class Main {
             
             beskrivelse = scanner.nextLine();
             
-            if (beskrivelse == "") {
+            if (beskrivelse.equals("")) {
             	return;
             }
             
@@ -111,13 +111,13 @@ public class Main {
     	String input = "n", navn, beskrivelse ="Ingen beskrivelse.";
     	int type = 0, apparatId = -1;
     	
-    	while (input == "n") {
+    	while (input.equals("n")) {
     		System.out.println("OVELSEREGISTRERING\n"
             		+ "Skriv inn navn på ovelsen (blankt for å gå tilbake):\n");
             
             navn = scanner.nextLine();
             
-            if (navn == "") {
+            if (navn.equals("")) {
             	return;
             }
             
@@ -152,7 +152,7 @@ public class Main {
             
             input = scanner.nextLine();
             
-            if (input == "y") {
+            if (input.equals("y")) {
             	
             }
     	}
