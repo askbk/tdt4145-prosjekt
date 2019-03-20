@@ -48,14 +48,19 @@ private int apparatId;
 
 	@Override
 	public void save(Connection conn) {
-		  try {    
-	            Statement stmt = conn.createStatement(); 
-	            int ovelseId = stmt.executeUpdate("insert into Ovelse (Navn) values ('" + this.navn + "')", Statement.RETURN_GENERATED_KEYS);
-	            stmt.executeUpdate("insert into ApparatOvelse (ApparatID, OvelseID) values ('" + ovelseId + "', '" + this.apparatId + "'");
-	        } catch (Exception e) {
-	            System.out.println("db error during insert of ApparatOvelse="+e);
-	            return;
-	        }		
+		int ovelseId = -1;
+		try {    
+			Statement stmt = conn.createStatement(); 
+			ovelseId = stmt.executeUpdate("INSERT INTO Ovelse (OvelseNavn, Ovelsetype) "
+										+ "VALUES ('" + this.navn + "', 1)", Statement.RETURN_GENERATED_KEYS);
+			
+	        stmt.executeUpdate("INSERT ApparatOvelse (ApparatID, OvelseID) "
+	        				 + "VALUES ('" + ovelseId + "', " + this.apparatId + ")");
+	    } catch (Exception e) {
+	        System.out.println("db error during insert of ApparatOvelse="+e);
+	        System.out.println(this.navn + " " + apparatId + " " + ovelseId);
+	        return;
+	    }		
 	}
 
 
