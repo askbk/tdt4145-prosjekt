@@ -57,8 +57,8 @@ public class SelectionQueries extends DBConn{
 			Statement stmt = conn.createStatement();
 			ResultSet rs = stmt.executeQuery("select*"
 											+ "from Okt as o"
-											+ "left join Notat as n on o.OktId = n.OktId"
-											+ "order by o.OktId desc limit n");
+											+ "left join Notat as "+ n + " on o.OktId = n.OktId"
+											+ "order by o.OktId desc limit " + n);
 		while (rs.next()) {
 			row = new ArrayList<>();
 			
