@@ -147,13 +147,23 @@ public class Main {
         		lagApparatOvelseCtrl.lagApparatOvelse(navn, apparatId);
         	}
             
-            System.out.println("Er dette riktig?\n"
-            		+ "Navn:\t" + navn + "\n");
+            System.out.println("Er dette riktig?");
+            if (type == 0) {
+            	System.out.println(lagFriOvelseCtrl.toString());
+            } else {
+            	System.out.println(lagApparatOvelseCtrl.toString());
+            }
             
             input = scanner.nextLine();
             
             if (input.equals("y")) {
+            	if (type == 0) {
+                	lagFriOvelseCtrl.fullforFriOvelse();
+                } else {
+                	lagApparatOvelseCtrl.fullforApparatOvelse();
+                }
             	
+            	return;
             }
     	}
     }
