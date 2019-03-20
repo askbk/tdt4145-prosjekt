@@ -25,6 +25,7 @@ public class LagApparatCtrl extends DBConn {
 		this.muligBeskrivelse = beskrivelse;
 	}
 	
+	
 	public void fullforApparat() {
 		this.apparat.save(conn);
 		try {
@@ -34,4 +35,8 @@ public class LagApparatCtrl extends DBConn {
 			return;
 		}
 	}
+	public String toString(){
+		return muligNavn + "\n" + muligBeskrivelse; 
+	}
 }
+
