@@ -50,7 +50,8 @@ private int apparatId;
 	public void save(Connection conn) {
 		  try {    
 	            Statement stmt = conn.createStatement(); 
-	            stmt.executeUpdate("insert into ApparatOvelse (Navn, apparatId) values ('" + this.navn + "', '" + this.apparatId + "')");
+	            int ovelseId = stmt.executeUpdate("insert into Øvelse (Navn) values ('" + this.navn + "')", Statement.RETURN_GENERATED_KEYS);
+	            stmt.executeUpdate("insert into ApparatØvelse (ApparatID, ØvelseID) values ('" + ovelseId + "', '" + this.apparatId + "'");
 	        } catch (Exception e) {
 	            System.out.println("db error during insert of ApparatOvelse="+e);
 	            return;
