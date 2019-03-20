@@ -1,11 +1,15 @@
 package trainingdiary;
 
 import java.io.*;
+import java.util.List;
 import java.util.Scanner;
 
 public class Main {
 	private static Scanner scanner = new Scanner(System.in);
 	private static LagApparatCtrl lagApparatCtrl = new LagApparatCtrl();
+	private static LagApparatOvelseCtrl lagApparatOvelseCtrl = new LagApparatOvelseCtrl();
+	private static LagFriOvelseCtrl lagFriOvelseCtrl = new LagFriOvelseCtrl();
+	private static SelectionQueries queries = new SelectionQueries();
 	
     public static void main(String[] args) {
     	theloop();
@@ -55,6 +59,7 @@ public class Main {
        				apparatRegistrering();
        				break;
        			case 1:
+       				ovelseRegistrering();
        				break;
        			case 2:
        				break;
@@ -94,7 +99,7 @@ public class Main {
             
             input = scanner.nextLine();
             
-            if (input == "y") {
+            if (input.equals("y")) {
             	lagApparatCtrl.lagApparat(navn, beskrivelse);
                 lagApparatCtrl.fullforApparat();
             	break;
@@ -103,8 +108,8 @@ public class Main {
     }
     
     private static void ovelseRegistrering() {
-    	String input = "n", navn, beskrivelse;
-    	int type = 0;
+    	String input = "n", navn, beskrivelse ="Ingen beskrivelse.";
+    	int type = 0, apparatId = -1;
     	
     	while (input == "n") {
     		System.out.println("OVELSEREGISTRERING\n"
@@ -120,10 +125,14 @@ public class Main {
             
             input = scanner.nextLine();
             
-            if (input == "y") {
+            if (input.equals("y")) {
             	type = 1;
-            	
+            	QueryResult apparater = queries.getApparater();
             	System.out.println("Hvilket apparat bruker ovelsen?:\n");
+            	
+            	for(List<String> apparatRow : apparater) {
+            		System.out.println(apparatRow.get(0) + ")\t" + apparatRow.get(1));
+            	}
                 
                 input = scanner.nextLine();
             } else {
@@ -132,16 +141,19 @@ public class Main {
                 beskrivelse = scanner.nextLine();
             }
             
+            if (type == 0) {
+        		lagFriOvelseCtrl.lagFriOvelse(navn, beskrivelse);
+        	} else {
+        		lagApparatOvelseCtrl.lagApparatOvelse(navn, apparatId);
+        	}
+            
             System.out.println("Er dette riktig?\n"
-            		+ "Navn:\t" + navn + "\n"
-            		+ "Beskrivelse:\t" + beskrivelse + "\n");
+            		+ "Navn:\t" + navn + "\n");
             
             input = scanner.nextLine();
             
             if (input == "y") {
-            	lagApparatCtrl.lagApparat(navn, beskrivelse);
-                lagApparatCtrl.fullforApparat();
-            	break;
+            	
             }
     	}
     }
