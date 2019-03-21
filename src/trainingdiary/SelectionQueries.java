@@ -123,11 +123,43 @@ public class SelectionQueries extends DBConn{
 		return result;
 	}*/
 	
+	public QueryResult getOvelseGrupper() {
+		connect();
+		int key;
+		QueryResult result = new QueryResult();
+		String navn;
+		List<String> row;
+		
+		try {
+			System.out.println("dheya");
+            Statement stmt = conn.createStatement();
+            
+            ResultSet rs = stmt.executeQuery("select *"
+            								+ "from Gruppe");
+           
+            while (rs.next()) {
+            	row = new ArrayList<>();
+            	
+                key =  rs.getInt("GruppeId");
+                navn = rs.getString("GruppeNavn");
+                row.add(Integer.toString(key));
+                row.add(navn);
+                
+                result.insertRow(key, row);
+            }
+
+        } catch (Exception e) {
+            System.out.println("db error during select of ovelsegruppe= "+e);
+        }
+		
+		return result;
+	}
 	
 	public static void main(String[] args) {
 		SelectionQueries test = new SelectionQueries();
 		QueryResult apparater = test.getApparater();
 		QueryResult okt = test.getOktNotat(4);
+		QueryResult grupper = test.getOvelseGrupper();
 		
 		for(List<String> row : apparater) {
 			for(String col : row) {
