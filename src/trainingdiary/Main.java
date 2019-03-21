@@ -23,7 +23,8 @@ public class Main {
     		System.out.println("Hva vil du gjore?\n"
             		+ "0)\tRegistrere apparat, ovelse eller treningsokt\n"
             		+ "1)\tNoe annet\n"
-            		+ "2)\tAvslutt\n");
+            		+ "2)\tSe siste oktene"
+            		+ "3)\tAvslutt\n");
 
             action = Integer.parseInt(scanner.nextLine());
 
@@ -34,6 +35,9 @@ public class Main {
             	case 1:
             		break;
             	case 2:
+            		oktOversikt();
+            		break;
+            	case 3:
             		System.out.println("Farvel ;)");
             		return;
             	default:
@@ -265,5 +269,29 @@ public class Main {
 				break;
 			}			
 		}
+	}
+
+	private static void oktOversikt() {
+		int n = 1;
+		
+		System.out.println("OKTOVERSIKT\nHvor mange okter vil du se (0 for a ga tilbake)?");
+		
+		n = Integer.parseInt(scanner.nextLine());
+		
+		QueryResult okter = queries.getOktNotat(n);
+		
+		for(List<String> row : okter) {
+			System.out.println(row.get(0) + ")\t" + row.get(1) + "\t" + row.get(2) + "\t");
+		}
+		
+		n = Integer.parseInt(scanner.nextLine());
+		
+		if (okter.getResult(n) != null) {
+			ovelseIOktRegistrering(n);
+		}
+	}
+	
+	private static void ovelseIOktRegistrering(int oktId) {
+		QueryResult ovelser = queries.getOvelser();
 	}
 }
