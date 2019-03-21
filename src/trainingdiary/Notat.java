@@ -5,7 +5,7 @@ import java.util.*;
 
 
 public class Notat extends ActiveDomainObject{
-	private int notatID;
+	private int oktId;
 	private String treningsFormaal;
 	private String treningsOpplevelse;
 
@@ -26,7 +26,7 @@ public class Notat extends ActiveDomainObject{
 	public void initialize(Connection conn) {
 		try {
             Statement stmt = conn.createStatement();
-            ResultSet rs = stmt.executeQuery("select treningsformal, treningsOpplevelse from Notat where notatID=" + notatID);
+            ResultSet rs = stmt.executeQuery("select treningsformal, treningsOpplevelse from Notat where OktId=" + oktId);
             while (rs.next()) {
                 treningsFormaal =  rs.getString("treningsformal");
                 treningsOpplevelse = rs.getString("treningsopplevelse");
@@ -54,6 +54,7 @@ public class Notat extends ActiveDomainObject{
             System.out.println("db error during insert of Notat="+e);
             return;
         }
+		
 
 	}
 

@@ -9,6 +9,7 @@ public class Main {
 	private static LagApparatOvelseCtrl lagApparatOvelseCtrl = new LagApparatOvelseCtrl();
 	private static LagFriOvelseCtrl lagFriOvelseCtrl = new LagFriOvelseCtrl();
 	private static LagOktCtrl lagOktCtrl = new LagOktCtrl();
+	private static LagNotatCtrl lagNotatCtrl = new LagNotatCtrl();
 	private static SelectionQueries queries = new SelectionQueries();
 
     public static void main(String[] args) {
@@ -131,7 +132,6 @@ public class Main {
             	type = 1;
             	apparater = queries.getApparater();
             	System.out.println("Hvilket apparat bruker ovelsen?:\n");
-
             	for(List<String> apparatRow : apparater) {
             		System.out.println(apparatRow.get(0) + ")\t" + apparatRow.get(1));
             	}
@@ -173,22 +173,14 @@ public class Main {
     }
 
 		private static void oktRegistrering() {
-			String input = "n", navn, dato, tidspunkt, varighet ="Ingen beskrivelse.";
+			String input = "n", dato, tidspunkt, varighet, treningsformal = null ,treningsOpplevelse = null, inputNotat = "n";
 			int type = 0, oktId = -1, form = 0, prestasjon = 0;
-
+ 
 			while (input.equals("n")) {
 				System.out.println("OKTREGISTRERING\n"
-								+ "Skriv inn navn p√• okten (blankt for √• g√• tilbake):\n"); // navn eller id?
+								+ "Skriv inn dato p√• Okten:\n"); // navn eller id?
 
-						navn = scanner.nextLine();
-
-						if (navn.equals("")) {
-							return;
-						}
-
-						System.out.println("Skriv inn dato p√• Okten:\n");
-
-						dato = scanner.nextLine();
+					dato = scanner.nextLine();
 
 						if (dato.equals("")) {
 							return;
@@ -209,26 +201,73 @@ public class Main {
 						if (varighet.equals("")) {
 							return;
 						}
+						
+						System.out.println("Skriv inn hvordan formen var(1-10, 0 for Â avslutte):\n");
+						
+						form = Integer.parseInt(scanner.nextLine());
+							
+						if (form == 0) {
+							return;
+						}	
 
-						form = scanner.nextInt();
+						System.out.println("Skriv inn hvordan prestasjonen var(1-10, 0 for Â avslutte):\n");
+							
+						prestasjon = Integer.parseInt(scanner.nextLine());
+							
+						if (prestasjon == 0) {
+							return;
+						}
+						
+						
+						
+						System.out.println("Vil du skrive notat for ¯kten(y/n):\n");
 
-						prestasjon = scanner.nextInt();
+						inputNotat = scanner.nextLine();
+
+						if (inputNotat.equals("y")) {
+							
+							System.out.println("Skriv treningsformal:\n");
+
+							treningsformal = scanner.nextLine();
+
+							if (input.equals("")) {
+								return;
+							}
+							System.out.println("Skriv treningsOpplevelse:\n");
+
+							treningsOpplevelse = scanner.nextLine();
+
+							if (input.equals("")) {
+								return;
+							}
+						}
+						
+						
+					
 
 						System.out.println("Er dette riktig?(y/n)\n"
-            		+ "dato:\t" + dato + "\n"
+								+ "dato:\t" + dato + "\n"
 								+ "Tidspunkt:\t" + tidspunkt + "\n"
 								+ "Varighet:\t" + varighet + "\n"
 								+ "Form:\t" + form + "\n"
-								+ "Prestasjon:\t" + prestasjon + "\n");
+								+ "Prestasjon:\t" + prestasjon + "\n"
+								+ "Treningsformal:\t" + treningsformal + "\n"
+								+ "TreningsOpplevelse:\t" + treningsOpplevelse + "\n"
+								);
 
 						input = scanner.nextLine();
+						
 						if (input.equals("y")) {
-            	lagOktCtrl.lagOkt(dato, tidspunkt, varighet, form, prestasjon);
-                lagOktCtrl.fullforOkt();
-            	break;
-
-
+							lagOktCtrl.lagOkt(dato, tidspunkt, varighet, form, prestasjon);
+							lagOktCtrl.fullforOkt();
+							if (inputNotat.equals("y")) {
+								lagOktCtrl.lagOkt(dato, tidspunkt, varighet, form, prestasjon,treningsformal,treningsOpplevelse);
+								lagOktCtrl.fullforOkt();
+							}
+							break;
 						}
-			}
+
+						
+					}
 		}
 }

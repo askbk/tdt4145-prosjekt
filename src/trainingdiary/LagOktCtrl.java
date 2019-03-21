@@ -10,6 +10,8 @@ public class LagOktCtrl extends DBConn {
 	private String muligVarighet;
 	private int muligForm;
 	private int muligPrestasjon;
+	private String muligtreningsFormaal;
+	private String muligtreningsOpplevelse;
 
 	public LagOktCtrl() {
         connect();
@@ -29,6 +31,18 @@ public class LagOktCtrl extends DBConn {
 		this.muligVarighet = varighet;
 		this.muligForm = form;
 		this.muligPrestasjon = prestasjon;
+	}
+	
+	public void lagOkt(String dato, String tidspunkt, String varighet, int form, int prestasjon,String treningsFormaal,
+	String treningsOpplevelse) {
+		this.okt = new Okt(dato, tidspunkt, varighet, form, prestasjon,treningsFormaal, treningsOpplevelse);
+		this.muligDato = dato;
+		this.muligTidspunkt = tidspunkt;
+		this.muligVarighet = varighet;
+		this.muligForm = form;
+		this.muligPrestasjon = prestasjon;
+		this.muligtreningsFormaal = treningsFormaal;
+		this.muligtreningsOpplevelse = treningsOpplevelse;
 	}
 
 	public void fullforOkt() {
