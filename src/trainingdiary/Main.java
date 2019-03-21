@@ -8,6 +8,7 @@ public class Main {
 	private static LagApparatCtrl lagApparatCtrl = new LagApparatCtrl();
 	private static LagApparatOvelseCtrl lagApparatOvelseCtrl = new LagApparatOvelseCtrl();
 	private static LagFriOvelseCtrl lagFriOvelseCtrl = new LagFriOvelseCtrl();
+	private static LagOktCtrl lagOktCtrl = new LagOktCtrl();
 	private static SelectionQueries queries = new SelectionQueries();
 	
     public static void main(String[] args) {
