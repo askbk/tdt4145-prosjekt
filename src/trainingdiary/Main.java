@@ -170,4 +170,29 @@ public class Main {
             }
     	}
     }
+    
+    private static void ovelseGruppeRegistrering() {
+    	String input = "n", navn;
+    	
+    	while (input.equals("n")) {
+    		System.out.println("OVELSEGRUPPEREGISTRERING\n"
+            		+ "Skriv inn navn på ovelsegruppen (blankt for å gå tilbake):\n");
+            
+            navn = scanner.nextLine();
+            
+            if (navn.equals("")) {
+            	return;
+            }
+           
+            System.out.println("Er dette riktig?\n"
+            				+ navn);
+            
+            input = scanner.nextLine();
+            
+            if (input.equals("y")) {
+            	
+            	return;
+            }
+    	}
+    }
 }
