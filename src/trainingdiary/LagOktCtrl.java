@@ -10,7 +10,7 @@ public class LagOktCtrl extends DBConn {
 	private String muligVarighet;
 	private int muligForm;
 	private int muligPrestasjon;
-	
+
 	public LagOktCtrl() {
         connect();
         // La laging av avtale være en transaksjon
@@ -21,7 +21,7 @@ public class LagOktCtrl extends DBConn {
             return;
         }
 	}
-	
+
 	public void lagOkt(String dato, String tidspunkt, String varighet, int form, int prestasjon) {
 		this.okt = new Okt(dato, tidspunkt, varighet, form, prestasjon);
 		this.muligDato = dato;
@@ -30,7 +30,7 @@ public class LagOktCtrl extends DBConn {
 		this.muligForm = form;
 		this.muligPrestasjon = prestasjon;
 	}
-	
+
 	public void fullforOkt() {
 		this.okt.save(conn);
 		try {
@@ -41,10 +41,10 @@ public class LagOktCtrl extends DBConn {
 		}
 	}
 	public String toString(){
-		return muligTidspunkt + 
-				"\n" + muligVarighet + 
-				"\n" + muligForm + 
-				"\n" + muligPrestasjon; 
+		return muligDato +
+				"\n" + muligTidspunkt + 
+				"\n" + muligVarighet +
+				"\n" + muligForm +
+				"\n" + muligPrestasjon;
 		}
 	}
-

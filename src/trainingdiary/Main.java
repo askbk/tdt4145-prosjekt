@@ -62,6 +62,7 @@ public class Main {
        				ovelseRegistrering();
        				break;
        			case 2:
+						oktRegistrering();
        				break;
        			case 3:
        				return;
@@ -214,8 +215,7 @@ public class Main {
 						prestasjon = scanner.nextInt();
 
 						System.out.println("Er dette riktig?(y/n)\n"
-            		+ "Navn:\t" + dato + "\n"
-            		+ "dato:\t" + navn + "\n"
+            		+ "dato:\t" + dato + "\n"
 								+ "Tidspunkt:\t" + tidspunkt + "\n"
 								+ "Varighet:\t" + varighet + "\n"
 								+ "Form:\t" + form + "\n"
