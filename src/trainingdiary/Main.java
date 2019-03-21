@@ -9,6 +9,7 @@ public class Main {
 	private static LagApparatOvelseCtrl lagApparatOvelseCtrl = new LagApparatOvelseCtrl();
 	private static LagFriOvelseCtrl lagFriOvelseCtrl = new LagFriOvelseCtrl();
 	private static LagOktCtrl lagOktCtrl = new LagOktCtrl();
+	private static LagOvelseGrupperCtrl lagOvelseGrupperCtrl = new LagOvelseGrupperCtrl();
 	private static SelectionQueries queries = new SelectionQueries();
 	
     public static void main(String[] args) {
@@ -21,7 +22,7 @@ public class Main {
     	while (action != 2) {
     		System.out.println("Hva vil du gjore?\n"
             		+ "0)\tRegistrere apparat, ovelse eller treningsokt\n"
-            		+ "1)\tNoe annet\n"
+            		+ "1)\tLage ovelsesgruppe\n"
             		+ "2)\tAvslutt\n");
             
             action = Integer.parseInt(scanner.nextLine());
@@ -31,6 +32,7 @@ public class Main {
             		registreringsMeny();
             		break;
             	case 1:
+            		ovelseGruppeMeny();
             		break;
             	case 2:
             		System.out.println("Farvel ;)");
@@ -60,6 +62,35 @@ public class Main {
        				break;
        			case 1:
        				ovelseRegistrering();
+       				break;
+       			case 2:
+       				break;
+       			case 3:
+       				return;
+       			default:
+       				System.out.println("ugyldig input >:/");
+       				break;
+            }
+    	}
+    }
+    
+    private static void ovelseGruppeMeny() {
+    	int action = -1;
+    	
+    	while (action != 3) {
+    		System.out.println("Hva vil du gjøre?\n"
+            		+ "0)\tLage ovelsegruppe\n"
+            		+ "1)\tSe ovelsegrupper\n"
+            		+ "2)\twoo\n"
+            		+ "3)\tIngenting - ta meg tilbake!\n");
+            
+            action = Integer.parseInt(scanner.nextLine());
+            
+            switch(action) {
+       			case 0:
+       				ovelseGruppeRegistrering();
+       				break;
+       			case 1:
        				break;
        			case 2:
        				break;
@@ -166,6 +197,33 @@ public class Main {
                 	lagApparatOvelseCtrl.fullforApparatOvelse();
                 }
             	
+            	return;
+            }
+    	}
+    }
+    
+    private static void ovelseGruppeRegistrering() {
+    	String input = "n", navn;
+    	
+    	while (input.equals("n")) {
+    		System.out.println("OVELSEGRUPPEREGISTRERING\n"
+            		+ "Skriv inn navn på ovelsegruppen (blankt for å gå tilbake):\n");
+            
+            navn = scanner.nextLine();
+            
+            if (navn.equals("")) {
+            	return;
+            }
+            
+            lagOvelseGrupperCtrl.lagOvelseGrupper(navn);
+            
+            System.out.println("Er dette riktig?\n"
+            				+ lagOvelseGrupperCtrl.toString());
+            
+            input = scanner.nextLine();
+            
+            if (input.equals("y")) {
+            	lagOvelseGrupperCtrl.fullforOvelseGrupper();
             	return;
             }
     	}

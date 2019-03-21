@@ -41,7 +41,8 @@ public class OvelseGrupper extends ActiveDomainObject{
 	public void save(Connection conn) {
 		try {    
             Statement stmt = conn.createStatement(); 
-            stmt.executeUpdate("insert into Gruppe(GruppeNavn) values (" + this.navn + ")");
+            stmt.executeUpdate("INSERT INTO Gruppe (GruppeNavn) "
+            				 + "VALUES ('" + this.navn + "')");
 
         } catch (Exception e) {
             System.out.println("db error during insert of OvelseGrupper="+e);
