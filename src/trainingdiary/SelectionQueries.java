@@ -48,22 +48,35 @@ public class SelectionQueries extends DBConn{
 		connect();
 		int key;
 		QueryResult result = new QueryResult();
-		String treningsFormaal;
-		String treningsOpplevelse;
+		String dato, tidspunkt, varighet, form, prestasjon, treningsFormaal, treningsOpplevelse;
 		List<String> row;
 		
 		try {
 			System.out.println("dheya");
 			Statement stmt = conn.createStatement();
-			ResultSet rs = stmt.executeQuery("select *"
-											+ "from Okt as o left join Notat as n on o.OktId = n.OktId order by o.OktId desc limit " + k);
+			ResultSet rs = stmt.executeQuery("SELECT *"
+										   + "FROM Okt as o "
+										   + "LEFT JOIN Notat AS n "
+										   + "ON o.OktId = n.OktId "
+										   + "ORDER BY o.OktId DESC "
+										   + "LIMIT " + k);
 		while (rs.next()) {
 			row = new ArrayList<>();
 			
-			key = rs.getInt("oktId");
-			treningsFormaal = rs.getString("treningsFormal");
-			treningsOpplevelse = rs.getString("treningsOpplevelse");
+			key = rs.getInt("OktId");
+			dato = rs.getString("OktDato");
+			tidspunkt = rs.getString("OktTidspunkt");
+			varighet = rs.getString("OktVarighet");
+			form = rs.getString("PersonligForm");
+			prestasjon = rs.getString("PersonligPrestasjon");
+			treningsFormaal = rs.getString("TreningsFormal");
+			treningsOpplevelse = rs.getString("TreningsOpplevelse");
 			row.add(Integer.toString(key));
+			row.add(dato);
+			row.add(tidspunkt);
+			row.add(varighet);
+			row.add(form);
+			row.add(prestasjon);
 			row.add(treningsFormaal);
 			row.add(treningsOpplevelse);
 			
