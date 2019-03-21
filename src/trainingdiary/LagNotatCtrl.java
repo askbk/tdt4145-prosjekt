@@ -14,7 +14,7 @@ public class LagNotatCtrl extends DBConn {
         try {
             conn.setAutoCommit(false);
         } catch (SQLException e) {
-            System.out.println("db error during setAutoCommit of LagFriOvelseCtrl="+e);
+            System.out.println("db error during setAutoCommit of LagNotatCtrl="+e);
             return;
         }
 	}
