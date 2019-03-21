@@ -9,6 +9,7 @@ public class Main {
 	private static LagApparatOvelseCtrl lagApparatOvelseCtrl = new LagApparatOvelseCtrl();
 	private static LagFriOvelseCtrl lagFriOvelseCtrl = new LagFriOvelseCtrl();
 	private static LagOktCtrl lagOktCtrl = new LagOktCtrl();
+	private static LagOvelseGrupperCtrl lagOvelseGrupperCtrl = new LagOvelseGrupperCtrl();
 	private static SelectionQueries queries = new SelectionQueries();
 	
     public static void main(String[] args) {
@@ -21,7 +22,7 @@ public class Main {
     	while (action != 2) {
     		System.out.println("Hva vil du gjore?\n"
             		+ "0)\tRegistrere apparat, ovelse eller treningsokt\n"
-            		+ "1)\tNoe annet\n"
+            		+ "1)\tLage ovelsesgruppe\n"
             		+ "2)\tAvslutt\n");
             
             action = Integer.parseInt(scanner.nextLine());
@@ -31,6 +32,7 @@ public class Main {
             		registreringsMeny();
             		break;
             	case 1:
+            		ovelseGruppeRegistrering();
             		break;
             	case 2:
             		System.out.println("Farvel ;)");
@@ -183,14 +185,16 @@ public class Main {
             if (navn.equals("")) {
             	return;
             }
-           
+            
+            lagOvelseGrupperCtrl.lagOvelseGrupper(navn);
+            
             System.out.println("Er dette riktig?\n"
-            				+ navn);
+            				+ lagOvelseGrupperCtrl.toString());
             
             input = scanner.nextLine();
             
             if (input.equals("y")) {
-            	
+            	lagOvelseGrupperCtrl.fullforOvelseGrupper();
             	return;
             }
     	}
