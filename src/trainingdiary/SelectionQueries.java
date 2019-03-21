@@ -196,6 +196,44 @@ public class SelectionQueries extends DBConn{
 		
 		return result;
 	}
+	public QueryResult getOvelseGruppeAntall() {
+		connect();
+		int key;
+		QueryResult result = new QueryResult();
+		List<String> row;
+		String queryStatement, navn;		
+		
+			queryStatement = "select ov.ovelsenavn, count(*)  antallGrupper "
+							+ "from Ovelse ov inner join OvelseIGruppe oig "
+							+ "where ov.ovelseId  = oig.ovelseId "
+							+ "group by ovelsenavn "
+							+ "order by antallGrupper desc ";
+			try {
+				System.out.println("dheya");
+	            Statement stmt = conn.createStatement();
+	            
+	            ResultSet rs = stmt.executeQuery(queryStatement);
+	           
+	            while (rs.next()) {
+	            	row = new ArrayList<>();
+	            	
+	                key =  rs.getInt("antallGrupper");
+	                navn = rs.getString("OvelseNavn");
+	                row.add(Integer.toString(key));
+	                row.add(navn);
+	                
+	                result.insertRow(key, row);
+	            }
+
+	        } catch (Exception e) {
+	            System.out.println("db error during select of ovelse= "+e);
+	        }
+			
+			return result;
+		
+		
+		
+	}
 	
 	public static void main(String[] args) {
 		SelectionQueries test = new SelectionQueries();
@@ -217,4 +255,5 @@ public class SelectionQueries extends DBConn{
 		}
 		
 	}
+	
 }
