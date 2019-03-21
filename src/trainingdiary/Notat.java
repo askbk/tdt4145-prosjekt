@@ -33,7 +33,7 @@ public class Notat extends ActiveDomainObject{
               }
 
         } catch (Exception e) {
-            System.out.println("db error during select of avtale= "+e);
+            System.out.println("db error during select of Notat= "+e);
             return;
         }
 
