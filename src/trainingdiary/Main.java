@@ -341,7 +341,15 @@ public class Main {
 	}
 
 	private static void ovelseIOktRegistrering(int oktId) {
-		QueryResult ovelser = queries.getOvelser();
+		int n;
+		QueryResult ovelser = queries.getOvelser(-1);
+		
+		for(List<String> row : ovelser) {
+			System.out.println(row.get(0) + ")\t" + row.get(1));
+		}
+		
+		n = Integer.parseInt(scanner.nextLine());
+
 	}
 
     private static void ovelseGruppeRegistrering() {
