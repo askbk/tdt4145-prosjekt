@@ -44,7 +44,7 @@ public class SelectionQueries extends DBConn{
 		return result;
 	}
 	
-	public QueryResult getOktNotat(int n) {
+	public QueryResult getOktNotat(int k) {
 		connect();
 		int key;
 		QueryResult result = new QueryResult();
@@ -57,8 +57,8 @@ public class SelectionQueries extends DBConn{
 			Statement stmt = conn.createStatement();
 			ResultSet rs = stmt.executeQuery("select*"
 											+ "from Okt as o"
-											+ "left join Notat as "+ n + " on o.OktId = n.OktId"
-											+ "order by o.OktId desc limit " + n);
+											+ "left join Notat as n on o.OktId = n.OktId"
+											+ "order by o.OktId desc limit " + k);
 		while (rs.next()) {
 			row = new ArrayList<>();
 			
