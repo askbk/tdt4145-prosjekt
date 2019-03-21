@@ -1,19 +1,15 @@
 package trainingdiary;
 
-import java.sql.*;
-import java.util.*;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.Statement;
 
+public class OvelseIGruppe extends ActiveDomainObject {
+	private int gruppeId, ovelseId;
 
-public class OvelseGrupper extends ActiveDomainObject{
-	private int gruppeId;
-	private String navn;
-
-	public OvelseGrupper(String navn) {
-		this.navn = navn;
-	}
-
-	public String getNavn() {
-		return this.navn;
+	public OvelseIGruppe(int ovelseId, int gruppeId) {
+		this.ovelseId = ovelseId;
+		this.gruppeId = gruppeId;
 	}
 
 	@Override
@@ -22,14 +18,12 @@ public class OvelseGrupper extends ActiveDomainObject{
             Statement stmt = conn.createStatement();
             ResultSet rs = stmt.executeQuery("select gruppenavn from Gruppe where GruppeId=" + gruppeId);
             while (rs.next()) {
-                navn =  rs.getString("navn");
-              }
+            }
 
         } catch (Exception e) {
             System.out.println("db error during select of OvelseGrupper= "+e);
             return;
         }
-
 	}
 
 	@Override
@@ -41,8 +35,8 @@ public class OvelseGrupper extends ActiveDomainObject{
 	public void save(Connection conn) {
 		try {    
             Statement stmt = conn.createStatement(); 
-            stmt.executeUpdate("INSERT INTO Gruppe (GruppeNavn) "
-            				 + "VALUES ('" + this.navn + "')");
+            stmt.executeUpdate("INSERT INTO OvelseIGruppe (GruppeId, OvelseId) "
+            				 + "VALUES (" + this.gruppeId + ", " + this.ovelseId + ")");
 
         } catch (Exception e) {
             System.out.println("db error during insert of OvelseGrupper="+e);
@@ -50,8 +44,4 @@ public class OvelseGrupper extends ActiveDomainObject{
         }
 
 	}
-
-
-
-
 }
