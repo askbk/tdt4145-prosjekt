@@ -172,80 +172,76 @@ public class Main {
     	}
     }
 
-		private static void oktRegistrering() {
-			String input = "n", dato, tidspunkt, varighet, treningsformal = null ,treningsOpplevelse = null, inputNotat = "n";
-			int type = 0, oktId = -1, form = 0, prestasjon = 0;
+	private static void oktRegistrering() {
+		String input = "n", dato, tidspunkt, varighet, treningsformal = null ,treningsOpplevelse = null, inputNotat = "n";
+		int type = 0, oktId = -1, form = 0, prestasjon = 0;
  
-			while (input.equals("n")) {
-				System.out.println("OKTREGISTRERING\n"
-								+ "Skriv inn dato på Okten:\n"); // navn eller id?
+		while (input.equals("n")) {
+			System.out.println("OKTREGISTRERING\n"
+							+ "Skriv inn dato på Okten:\n"); // navn eller id?
 
-					dato = scanner.nextLine();
+			dato = scanner.nextLine();
 
-						if (dato.equals("")) {
-							return;
-						}
+			if (dato.equals("")) {
+				return;
+			}
 
-						System.out.println("Skriv inn tidspunkt på Okten:\n");
+			System.out.println("Skriv inn tidspunkt på Okten:\n");
 
-						tidspunkt = scanner.nextLine();
+			tidspunkt = scanner.nextLine();
 
-						if (tidspunkt.equals("")) {
-							return;
-						}
+			if (tidspunkt.equals("")) {
+				return;
+			}
 
-						System.out.println("Skriv inn varighet på Okten:\n");
+			System.out.println("Skriv inn varighet på Okten:\n");
 
-						varighet = scanner.nextLine();
+			varighet = scanner.nextLine();
 
-						if (varighet.equals("")) {
-							return;
-						}
+			if (varighet.equals("")) {
+				return;
+			}
 						
-						System.out.println("Skriv inn hvordan formen var(1-10, 0 for � avslutte):\n");
+			System.out.println("Skriv inn hvordan formen var(1-10, 0 for � avslutte):\n");
 						
-						form = Integer.parseInt(scanner.nextLine());
+			form = Integer.parseInt(scanner.nextLine());
 							
-						if (form == 0) {
-							return;
-						}	
+			if (form == 0) {
+				return;
+			}	
 
-						System.out.println("Skriv inn hvordan prestasjonen var(1-10, 0 for � avslutte):\n");
+			System.out.println("Skriv inn hvordan prestasjonen var(1-10, 0 for � avslutte):\n");
 							
-						prestasjon = Integer.parseInt(scanner.nextLine());
+			prestasjon = Integer.parseInt(scanner.nextLine());
 							
-						if (prestasjon == 0) {
-							return;
-						}
+			if (prestasjon == 0) {
+				return;
+			}	
 						
-						
-						
-						System.out.println("Vil du skrive notat for �kten(y/n):\n");
+			System.out.println("Vil du skrive notat for �kten(y/n):\n");
 
-						inputNotat = scanner.nextLine();
+			inputNotat = scanner.nextLine();
 
-						if (inputNotat.equals("y")) {
+			if (inputNotat.equals("y")) {
 							
-							System.out.println("Skriv treningsformal:\n");
+				System.out.println("Skriv treningsformal:\n");
 
-							treningsformal = scanner.nextLine();
+				treningsformal = scanner.nextLine();
 
-							if (input.equals("")) {
-								return;
-							}
-							System.out.println("Skriv treningsOpplevelse:\n");
+				if (input.equals("")) {
+					return;
+				}
+				
+				System.out.println("Skriv treningsOpplevelse:\n");
 
-							treningsOpplevelse = scanner.nextLine();
+				treningsOpplevelse = scanner.nextLine();
 
-							if (input.equals("")) {
-								return;
-							}
-						}
+				if (input.equals("")) {
+					return;
+				}
+			}
 						
-						
-					
-
-						System.out.println("Er dette riktig?(y/n)\n"
+			System.out.println("Er dette riktig?(y/n)\n"
 								+ "dato:\t" + dato + "\n"
 								+ "Tidspunkt:\t" + tidspunkt + "\n"
 								+ "Varighet:\t" + varighet + "\n"
@@ -255,19 +251,19 @@ public class Main {
 								+ "TreningsOpplevelse:\t" + treningsOpplevelse + "\n"
 								);
 
-						input = scanner.nextLine();
+			input = scanner.nextLine();
 						
-						if (input.equals("y")) {
-							lagOktCtrl.lagOkt(dato, tidspunkt, varighet, form, prestasjon);
-							lagOktCtrl.fullforOkt();
-							if (inputNotat.equals("y")) {
-								lagOktCtrl.lagOkt(dato, tidspunkt, varighet, form, prestasjon,treningsformal,treningsOpplevelse);
-								lagOktCtrl.fullforOkt();
-							}
-							break;
-						}
-
-						
-					}
+			if (input.equals("y")) {
+				lagOktCtrl.lagOkt(dato, tidspunkt, varighet, form, prestasjon);
+				lagOktCtrl.fullforOkt();
+				
+				if (inputNotat.equals("y")) {
+					lagOktCtrl.lagOkt(dato, tidspunkt, varighet, form, prestasjon,treningsformal,treningsOpplevelse);
+					lagOktCtrl.fullforOkt();
+				}
+				
+				break;
+			}			
 		}
+	}
 }
