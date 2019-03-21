@@ -55,15 +55,13 @@ public class SelectionQueries extends DBConn{
 		try {
 			System.out.println("dheya");
 			Statement stmt = conn.createStatement();
-			ResultSet rs = stmt.executeQuery("select*"
-											+ "from Okt as o"
-											+ "left join Notat as n on o.OktId = n.OktId"
-											+ "order by o.OktId desc limit " + k);
+			ResultSet rs = stmt.executeQuery("select *"
+											+ "from Okt as o left join Notat as n on o.OktId = n.OktId order by o.OktId desc limit " + k);
 		while (rs.next()) {
 			row = new ArrayList<>();
 			
 			key = rs.getInt("oktId");
-			treningsFormaal = rs.getString("treningsFormaal");
+			treningsFormaal = rs.getString("treningsFormal");
 			treningsOpplevelse = rs.getString("treningsOpplevelse");
 			row.add(Integer.toString(key));
 			row.add(treningsFormaal);
@@ -78,7 +76,7 @@ public class SelectionQueries extends DBConn{
 		return result;
 	}
 	
-	public QueryResult getResultatlogg(int dato1, int dato2) {
+	/*public QueryResult getResultatlogg(int dato1, int dato2) {
 		connect();
 		int key;
 		QueryResult result = new QueryResult();
@@ -110,15 +108,22 @@ public class SelectionQueries extends DBConn{
 		}
 		
 		return result;
-	}
+	}*/
 	
 	
 	public static void main(String[] args) {
 		SelectionQueries test = new SelectionQueries();
 		QueryResult apparater = test.getApparater();
+		QueryResult okt = test.getOktNotat(4);
 		
 		for(List<String> row : apparater) {
 			for(String col : row) {
+				System.out.print(col + " ");
+			}
+			System.out.print("\n");
+		}
+		for(List<String> row1 : okt) {
+			for(String col : row1) {
 				System.out.print(col + " ");
 			}
 			System.out.print("\n");
