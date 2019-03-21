@@ -32,7 +32,7 @@ public class Main {
             		registreringsMeny();
             		break;
             	case 1:
-            		ovelseGruppeRegistrering();
+            		ovelseGruppeMeny();
             		break;
             	case 2:
             		System.out.println("Farvel ;)");
@@ -62,6 +62,35 @@ public class Main {
        				break;
        			case 1:
        				ovelseRegistrering();
+       				break;
+       			case 2:
+       				break;
+       			case 3:
+       				return;
+       			default:
+       				System.out.println("ugyldig input >:/");
+       				break;
+            }
+    	}
+    }
+    
+    private static void ovelseGruppeMeny() {
+    	int action = -1;
+    	
+    	while (action != 3) {
+    		System.out.println("Hva vil du gjøre?\n"
+            		+ "0)\tLage ovelsegruppe\n"
+            		+ "1)\tSe ovelsegrupper\n"
+            		+ "2)\twoo\n"
+            		+ "3)\tIngenting - ta meg tilbake!\n");
+            
+            action = Integer.parseInt(scanner.nextLine());
+            
+            switch(action) {
+       			case 0:
+       				ovelseGruppeRegistrering();
+       				break;
+       			case 1:
        				break;
        			case 2:
        				break;
