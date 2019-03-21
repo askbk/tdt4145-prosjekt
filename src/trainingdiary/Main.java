@@ -272,7 +272,7 @@ public class Main {
     		System.out.println("Hva vil du gjøre?\n"
             		+ "0)\tSe ovelser\n"
             		+ "1)\tLegge til ovelser\n"
-            		+ "3)\tIngenting - ta meg tilbake!\n");
+            		+ "2)\tIngenting - ta meg tilbake!\n");
             
             action = Integer.parseInt(scanner.nextLine());
             
@@ -283,7 +283,7 @@ public class Main {
        			case 1:
        				ovelseIGruppeRegistrering(gruppeId);
        				break;
-       			case 3:
+       			case 2:
        				return;
        			default:
        				System.out.println("ugyldig input >:/");
