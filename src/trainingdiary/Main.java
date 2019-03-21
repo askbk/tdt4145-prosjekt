@@ -82,7 +82,7 @@ public class Main {
     		System.out.println("Hva vil du gjøre?\n"
             		+ "0)\tLage ovelsegruppe\n"
             		+ "1)\tSe ovelsegrupper\n"
-            		+ "2)\twoo\n"
+            		+ "2)\tOvelser i antall grupper\n"
             		+ "3)\tIngenting - ta meg tilbake!\n");
             
             action = Integer.parseInt(scanner.nextLine());
@@ -95,6 +95,7 @@ public class Main {
        				ovelseGruppeOversikt();
        				break;
        			case 2:
+       				ovelseGruppeAntall();
        				break;
        			case 3:
        				return;
@@ -117,6 +118,22 @@ public class Main {
     	
     	while (action != -1) {
     		if (ovelseGrupper.getResult(action) != null) {
+    			ovelseIGruppeMeny(action);
+    		}
+    	}
+    }
+    private static void ovelseGruppeAntall() {
+    	QueryResult OvelseGruppeAntall = queries.getOvelseGruppeAntall();
+    	int action = -10;
+    	
+    	for(List<String> row : OvelseGruppeAntall) {
+			System.out.println(row.get(0) + ")\t" + row.get(1));
+		}
+    	
+    	action = Integer.parseInt(scanner.nextLine());
+    	
+    	while (action != -1) {
+    		if (OvelseGruppeAntall.getResult(action) != null) {
     			ovelseIGruppeMeny(action);
     		}
     	}
@@ -255,7 +272,7 @@ public class Main {
     		System.out.println("Hva vil du gjøre?\n"
             		+ "0)\tSe ovelser\n"
             		+ "1)\tLegge til ovelser\n"
-            		+ "3)\tIngenting - ta meg tilbake!\n");
+            		+ "2)\tIngenting - ta meg tilbake!\n");
             
             action = Integer.parseInt(scanner.nextLine());
             
@@ -266,7 +283,7 @@ public class Main {
        			case 1:
        				ovelseIGruppeRegistrering(gruppeId);
        				break;
-       			case 3:
+       			case 2:
        				return;
        			default:
        				System.out.println("ugyldig input >:/");
