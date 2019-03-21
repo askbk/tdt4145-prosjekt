@@ -20,7 +20,7 @@ public class LagOvelseIGruppeCtrl extends DBConn {
 	public void lagOvelseIGruppe(int ovelseId, int gruppeId) {
 		this.muligGruppeId = gruppeId;
 		this.muligOvelseId = ovelseId;
-		this.ovelseIGruppe = new OvelseIGruppe(this.muligGruppeId, this.muligOvelseId);
+		this.ovelseIGruppe = new OvelseIGruppe(this.muligOvelseId, this.muligGruppeId);
 	}
 	
 	public void fullforOvelseIGruppe() {

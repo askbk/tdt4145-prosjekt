@@ -10,6 +10,7 @@ public class Main {
 	private static LagFriOvelseCtrl lagFriOvelseCtrl = new LagFriOvelseCtrl();
 	private static LagOktCtrl lagOktCtrl = new LagOktCtrl();
 	private static LagOvelseGrupperCtrl lagOvelseGrupperCtrl = new LagOvelseGrupperCtrl();
+	private static LagOvelseIGruppeCtrl lagOvelseIGruppeCtrl = new LagOvelseIGruppeCtrl();
 	private static SelectionQueries queries = new SelectionQueries();
 	
     public static void main(String[] args) {
@@ -91,6 +92,7 @@ public class Main {
        				ovelseGruppeRegistrering();
        				break;
        			case 1:
+       				ovelseGruppeOversikt();
        				break;
        			case 2:
        				break;
@@ -100,6 +102,23 @@ public class Main {
        				System.out.println("ugyldig input >:/");
        				break;
             }
+    	}
+    }
+    
+    private static void ovelseGruppeOversikt() {
+    	QueryResult ovelseGrupper = queries.getOvelseGrupper();
+    	int action = -10;
+    	
+    	for(List<String> row : ovelseGrupper) {
+			System.out.println(row.get(0) + ")\t" + row.get(1));
+		}
+    	
+    	action = Integer.parseInt(scanner.nextLine());
+    	
+    	while (action != -1) {
+    		if (ovelseGrupper.getResult(action) != null) {
+    			ovelseIGruppeMeny(action);
+    		}
     	}
     }
     
@@ -226,6 +245,63 @@ public class Main {
             	lagOvelseGrupperCtrl.fullforOvelseGrupper();
             	return;
             }
+    	}
+    }
+
+    private static void ovelseIGruppeMeny(int gruppeId) {
+    	int action = -1;
+    	System.out.println("hello");
+    	while (action != 3) {
+    		System.out.println("Hva vil du gjøre?\n"
+            		+ "0)\tSe ovelser\n"
+            		+ "1)\tLegge til ovelser\n"
+            		+ "3)\tIngenting - ta meg tilbake!\n");
+            
+            action = Integer.parseInt(scanner.nextLine());
+            
+            switch(action) {
+       			case 0:
+       				ovelseIGruppeOversikt(gruppeId);
+       				break;
+       			case 1:
+       				ovelseIGruppeRegistrering(gruppeId);
+       				break;
+       			case 3:
+       				return;
+       			default:
+       				System.out.println("ugyldig input >:/");
+       				break;
+            }
+    	}
+    }
+    
+    private static void ovelseIGruppeOversikt(int gruppeId) {
+    	QueryResult ovelser = queries.getOvelser(gruppeId);
+    	
+    	for(List<String> ovelseRow : ovelser) {
+    		System.out.println(ovelseRow.get(0) + ")\t" + ovelseRow.get(1));
+    	}
+    }
+    
+    private static void ovelseIGruppeRegistrering(int gruppeId) {
+    	String input = "n";
+    	QueryResult ovelser = queries.getOvelser(-1);
+    	int ovelseId;
+    	
+    	for(List<String> ovelseRow : ovelser) {
+    		System.out.println(ovelseRow.get(0) + ")\t" + ovelseRow.get(1));
+    	}
+    	
+    	while (input.equals("n")) {
+    		System.out.println("OVELSEIGRUPPEREGISTRERING\n"
+            		+ "Skriv inn ID på ovelsen du vil sette inn i gruppen (blankt for å gå tilbake):\n");
+            
+            ovelseId = Integer.parseInt(scanner.nextLine());
+            
+            lagOvelseIGruppeCtrl.lagOvelseIGruppe(ovelseId, gruppeId);
+            
+            lagOvelseIGruppeCtrl.fullforOvelseIGruppe();
+            return;
     	}
     }
 }

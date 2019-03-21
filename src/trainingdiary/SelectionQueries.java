@@ -155,6 +155,48 @@ public class SelectionQueries extends DBConn{
 		return result;
 	}
 	
+	public QueryResult getOvelser(int gruppeId) {
+		connect();
+		int key;
+		QueryResult result = new QueryResult();
+		List<String> row;
+		String queryStatement, navn;
+		
+		if (gruppeId != -1) {
+			queryStatement = "SELECT o.OvelseId, o.OvelseNavn "
+						   + "FROM Ovelse o "
+						   + "INNER JOIN OvelseIGruppe oig "
+						   + "ON o.OvelseId=oig.OvelseId "
+						   + "WHERE oig.GruppeId=" + gruppeId;
+		} else {
+			queryStatement = "SELECT OvelseId, OvelseNavn "
+						   + "FROM Ovelse";
+		}
+		
+		try {
+			System.out.println("dheya");
+            Statement stmt = conn.createStatement();
+            
+            ResultSet rs = stmt.executeQuery(queryStatement);
+           
+            while (rs.next()) {
+            	row = new ArrayList<>();
+            	
+                key =  rs.getInt("OvelseId");
+                navn = rs.getString("OvelseNavn");
+                row.add(Integer.toString(key));
+                row.add(navn);
+                
+                result.insertRow(key, row);
+            }
+
+        } catch (Exception e) {
+            System.out.println("db error during select of ovelse= "+e);
+        }
+		
+		return result;
+	}
+	
 	public static void main(String[] args) {
 		SelectionQueries test = new SelectionQueries();
 		QueryResult apparater = test.getApparater();
